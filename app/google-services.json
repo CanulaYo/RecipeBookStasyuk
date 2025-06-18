@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "619364196937",
+    "firebase_url": "https://recipebook-6a1a8-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "recipebook-6a1a8",
+    "storage_bucket": "recipebook-6a1a8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619364196937:android:514ae2168678ba9bc71598",
+        "android_client_info": {
+          "package_name": "com.projects.android.recipebook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_Ysxm1lVvAuaj9nNkZopFCcK7n9Xhjao"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

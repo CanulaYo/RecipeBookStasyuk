@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/choice_authorization_way">
+
+    <fragment
+        android:id="@+id/fragmentListRecipes"
+        android:name="com.projects.android.recipebook.view.list.ListRecipesFragment"
+        android:label="fragment_list_recipes"
+        tools:layout="@layout/fragment_list_recipes">
+        <action
+            android:id="@+id/from_ListRecipesFragment_to_singleRecipeFragment"
+            app:destination="@id/fragmentSingleRecipe" />
+        <action
+            android:id="@+id/from_listRecipesFragment_to_addRecipeFragment"
+            app:destination="@id/fragmentAddRecipe" />
+        <action
+            android:id="@+id/action_fragmentListRecipes_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentSingleRecipe"
+        android:name="com.projects.android.recipebook.view.single.SingleRecipeFragment"
+        android:label="fragment_single_recipe"
+        tools:layout="@layout/fragment_single_recipe">
+        <argument
+            android:name="recipeID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/self_singleRecipeFragment"
+            app:destination="@id/fragmentSingleRecipe" />
+        <action
+            android:id="@+id/from_singleRecipeFragment_to_addRecipeFragment"
+            app:destination="@id/fragmentAddRecipe" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentAddRecipe"
+        android:name="com.projects.android.recipebook.view.add.AddRecipeFragment"
+        android:label="fragment_add_recipe"
+        tools:layout="@layout/fragment_add_recipe">
+        <action
+            android:id="@+id/from_addRecipeFragment_to_singleRecipeFragment"
+            app:destination="@id/fragmentSingleRecipe" />
+
+        <argument
+            android:name="recipeID"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/choice_authorization_way"
+        android:name="com.projects.android.recipebook.ChoiceAuthorizationWayFragment"
+        android:label="fragment_choice_authorization_way"
+        tools:layout="@layout/fragment_choice_authorization_way">
+        <action
+            android:id="@+id/action_choice_authorization_way_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_choice_authorization_way_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.projects.android.recipebook.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration">
+        <action
+            android:id="@+id/action_registrationFragment_to_fragmentListRecipes"
+            app:destination="@id/fragmentListRecipes" />
+    </fragment>
+    <fragment
+        android:id="@+id/authorizationFragment"
+        android:name="com.projects.android.recipebook.AuthorizationFragment"
+        android:label="fragment_authorization"
+        tools:layout="@layout/fragment_authorization">
+        <action
+            android:id="@+id/action_authorizationFragment_to_fragmentListRecipes"
+            app:destination="@id/fragmentListRecipes" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.projects.android.recipebook.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_fragmentListRecipes"
+            app:destination="@id/fragmentListRecipes" />
+        <action
+            android:id="@+id/action_settingsFragment_to_choice_authorization_way"
+            app:destination="@id/choice_authorization_way" />
+    </fragment>
+</navigation>

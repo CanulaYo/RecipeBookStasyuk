@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">Книга Рецептов</string>
+
+
+    <string name="menu_add_recipe_cancel">Отмена</string>
+    <string name="menu_add_recipe_save">Сохранить</string>
+    <string name="add_recipe_fragment_recipe_name">Название</string>
+    <string name="add_recipe_fragment_take_picture">Сделать фото</string>
+    <string name="add_recipe_fragment_is_cooked">Жареное</string>
+    <string name="add_recipe_fragment_is_veg">Без мяса</string>
+    <string name="add_recipe_fragment_course">Блюдо</string>
+    <string name="add_recipe_fragment_preparation_time">Время готовки</string>
+    <string name="add_recipe_fragment_portions">Порции</string>
+    <string name="item_add_recipe_fragment_ingredient_quantity">Величина</string>
+    <string name="item_add_recipe_fragment_ingredient_name">Название ингредиента</string>
+    <string name="add_recipe_fragment_preparation">Инструкция</string>
+
+
+    <string name="add_tag_recipe_search">Поиск</string>
+
+
+    <string name="filters_fragment_search_something">Введите что-нибудь…</string>
+    <string name="filters_fragment_search">Поиск</string>
+    <string name="filters_fragment_course_starter">Стартер</string>
+    <string name="filters_fragment_course_first">Первое</string>
+    <string name="filters_fragment_course_second">Второе</string>
+    <string name="filters_fragment_course_side">Закуска</string>
+    <string name="filters_fragment_course_dessert">Дессерт</string>
+    <string name="filters_fragment_preparation_time_5_min">5 мин</string>
+    <string name="filters_fragment_preparation_time_30_min">30 мин</string>
+    <string name="filters_fragment_preparation_time_1_hour">1 час</string>
+    <string name="filters_fragment_preparation_time_2_hours">2 часа</string>
+    <string name="filters_fragment_preparation_time_4_hours">4 часа</string>
+    <string name="filters_fragment_preparation_time_unlimited">Без лимита</string>
+    <string name="filters_fragment_is_not_veg">Без мяса</string>
+    <string name="filters_fragment_is_veg">С мясом</string>
+    <string name="filters_fragment_is_cooked">Жареное</string>
+    <string name="filters_fragment_is_not_cooked">Не жареное</string>
+
+
+    <string name="menu_delete_recipe">Удалить</string>
+    <string name="menu_edit_recipe">Изменить</string>
+    <string name="single_recipe_fragment_course_label">Блюдо:</string>
+    <string name="single_recipe_fragment_prepTime_label">Время приг.:</string>
+    <string name="single_recipe_fragment_portions_label">Порций:</string>
+    <string name="single_recipe_fragment_isCooked">Жареное</string>
+    <string name="single_recipe_fragment_isNotCooked">Не жареное</string>
+    <string name="single_recipe_fragment_isVeg">С мясом</string>
+    <string name="single_recipe_fragment_isNotVeg">Без мяса</string>
+
+
+    <string name="list_recipes_fragment_add_recipe">Добавить рецепт</string>
+    <string name="list_recipes_fragment_extend_filter_panel">Расширить поисковую панель</string>
+    <string name="item_list_recipes_fragment_cooked">Жареное или нет</string>
+    <string name="item_list_recipes_fragment_veg">С или без мяса</string>
+    <string name="item_list_recipes_fragment_course">Блюдо</string>
+
+
+    <string name="text_logout">Выйти из аккаунта</string>
+    <string name="text_switch_theme">Сменить тему</string>
+
+
+    <string name="title_registration">Регистрация</string>
+    <string name="title_authorization">Авторизация</string>
+    <string name="edit_text_email">Почта</string>
+    <string name="edit_text_password">ФИО</string>
+    <string name="edit_text_password_again">Пароль</string>
+    <string name="enter_button_text">Войти</string>
+
+</resources>

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name_layout_add"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3_add"
+            app:layout_constraintEnd_toStartOf="@+id/take_picture_add"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="@+id/guideline1_add"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/add_recipe_fragment_recipe_name"
+                android:importantForAutofill="no"
+                android:inputType="textCapSentences"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="#757575" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/take_picture_add"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:contentDescription="@string/add_recipe_fragment_take_picture"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_baseline_photo_camera_24"
+            app:layout_constraintBottom_toBottomOf="@+id/name_layout_add"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2_add"
+            app:layout_constraintStart_toEndOf="@+id/name_layout_add"
+            app:layout_constraintTop_toTopOf="@+id/name_layout_add" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="86dp" />
+
+        <ToggleButton
+            android:id="@+id/is_veg_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:minHeight="48dp"
+            android:textOff="@string/add_recipe_fragment_is_veg"
+            android:textOn="@string/add_recipe_fragment_is_veg"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4_add"
+            app:layout_constraintEnd_toStartOf="@+id/is_cooked_add"
+            app:layout_constraintStart_toEndOf="@+id/portions_layout_add"
+            app:layout_constraintTop_toTopOf="@+id/guideline3_add"
+            tools:ignore="TextContrastCheck" />
+
+        <ToggleButton
+            android:id="@+id/is_cooked_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:minHeight="48dp"
+            android:textOff="@string/add_recipe_fragment_is_cooked"
+            android:textOn="@string/add_recipe_fragment_is_cooked"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4_add"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2_add"
+            app:layout_constraintStart_toEndOf="@+id/is_veg_add"
+            app:layout_constraintTop_toTopOf="@+id/guideline3_add"
+            tools:ignore="TextContrastCheck" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="182dp" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/course_add"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/guideline5_add"
+            app:layout_constraintEnd_toStartOf="@+id/preparation_time_add"
+            app:layout_constraintStart_toStartOf="@+id/guideline1_add"
+            app:layout_constraintTop_toTopOf="@+id/guideline4_add">
+
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/add_recipe_fragment_course"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/preparation_time_add"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_recipe_fragment_preparation_time"
+            app:layout_constraintBottom_toTopOf="@+id/guideline5_add"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2_add"
+            app:layout_constraintStart_toEndOf="@+id/course_add"
+            app:layout_constraintTop_toTopOf="@+id/guideline4_add">
+
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:textColorHint="#757575" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/portions_layout_add"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4_add"
+            app:layout_constraintEnd_toStartOf="@+id/is_veg_add"
+            app:layout_constraintStart_toStartOf="@+id/guideline1_add"
+            app:layout_constraintTop_toTopOf="@+id/guideline3_add">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/portions_add"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="start"
+                android:gravity="center_horizontal"
+                android:hint="@string/add_recipe_fragment_portions"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColorHint="#757575"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="250dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/unit_ingredient_add"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/name_ingredient_layout_add"
+            app:layout_constraintEnd_toStartOf="@+id/name_ingredient_layout_add"
+            app:layout_constraintStart_toEndOf="@+id/quantity_ingredient_layout_add"
+            app:layout_constraintTop_toTopOf="@+id/name_ingredient_layout_add">
+
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/quantity_ingredient_layout_add"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/name_ingredient_layout_add"
+            app:layout_constraintEnd_toStartOf="@+id/unit_ingredient_add"
+            app:layout_constraintStart_toStartOf="@+id/guideline1_add"
+            app:layout_constraintTop_toTopOf="@+id/name_ingredient_layout_add">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/quantity_ingredient_add"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:ellipsize="start"
+                android:gravity="center_horizontal"
+                android:hint="@string/item_add_recipe_fragment_ingredient_quantity"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textColorHint="#757575" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name_ingredient_layout_add"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline6_add"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2_add"
+            app:layout_constraintStart_toEndOf="@+id/unit_ingredient_add"
+            app:layout_constraintTop_toTopOf="@+id/guideline5_add">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name_ingredient_add"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="start"
+                android:gravity="center_horizontal"
+                android:hint="@string/item_add_recipe_fragment_ingredient_name"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:inputType="textCapSentences"
+                android:minHeight="48dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:singleLine="true"
+                android:textColorHint="#757575" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="345dp" />
+
+        <LinearLayout
+            android:id="@+id/ingredients_container_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2_add"
+            app:layout_constraintStart_toStartOf="@+id/guideline1_add"
+            app:layout_constraintTop_toTopOf="@+id/guideline6_add"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/preparation_layout_add"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/transparent"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2_add"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline1_add"
+            app:layout_constraintTop_toBottomOf="@+id/ingredients_container_add"
+            app:layout_constraintVertical_bias="0.0">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/preparation_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="all"
+                android:hint="@string/add_recipe_fragment_preparation"
+                android:importantForAutofill="no"
+                android:inputType="textCapSentences|textMultiLine"
+                android:scrollbars="vertical"
+                android:textColorHint="#757575" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
