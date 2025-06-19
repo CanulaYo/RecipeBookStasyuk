@@ -42,24 +42,24 @@ class AddRecipeFragment : Fragment() {
 
     private var container: ViewGroup? = null
 
-    // VIEW MODEL
+
     private val addRecipeViewModel: AddRecipeViewModel by viewModels {
         AddRecipeViewModelFactory(args.recipeID)
     }
 
-    // SAFE ARGS
+
     private val args: AddRecipeFragmentArgs by navArgs()
 
-    // VIEW BINDING
+
     private var _binding: FragmentAddRecipeBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
-            "Cannot access binding because it is null. Is the view visible?"
+            "Не удалсь получить доступ к биндингу"
         }
 
     private var _bindingIngredientsList = mutableListOf<ItemAddIngredientBinding?>()
 
-    // Variables for taking pictures
+
     private val takePicture =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { didTakePicture: Boolean ->
             if (didTakePicture && addRecipeViewModel.state.value?.pictureFileNameTemp != null) {
@@ -74,11 +74,11 @@ class AddRecipeFragment : Fragment() {
                         }
                     } else {
                         addRecipeViewModel.updateState { state -> state.pictureFileNameTemp = null }
-                        ErrorUtil.shortToast(requireContext(), "Failure to take picture")
+                        ErrorUtil.shortToast(requireContext(), "Ошибка получения фотографии")
                     }
                 }
             } else {
-                ErrorUtil.shortToast(requireContext(), "Failure to take picture")
+                ErrorUtil.shortToast(requireContext(), "Ошибка получения фотографии")
             }
         }
 
@@ -95,21 +95,21 @@ class AddRecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // APPBAR: MENU
+
         setupMenu()
 
         binding.apply {
 
-            // Conditions for navigateUp
+
             activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, true) {
                 if (addRecipeViewModel.checkRecipe(
                         binding,
                         _bindingIngredientsList
                     )
-                ) {//if there are no errors
-                    AlertDialog.Builder(requireContext()).setTitle("Confirm to Exit?")
+                ) {
+                    AlertDialog.Builder(requireContext()).setTitle("Хотите выйти?")
                         .setIcon(R.drawable.ic_baseline_dangerous_24)
-                        .setMessage("The Recipe will be discarded")
+                        .setMessage("Рецепт не будет сохранён")
                         .setPositiveButton(android.R.string.ok) { _, _ ->
                             addRecipeViewModel.state.value?.canceled = true
                             addRecipeViewModel.cancelInsertRecipe(requireContext())
@@ -118,7 +118,7 @@ class AddRecipeFragment : Fragment() {
                 }
             }
 
-            // ERRORS HANDLERS
+
             nameAdd.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
                 if (!hasFocus) AddRecipeCheckErrors.checkName(
                     nameLayoutAdd,
@@ -137,21 +137,21 @@ class AddRecipeFragment : Fragment() {
                 )
             }
 
-            // Initializations
+
             requireContext().let {
-                // Initialization spinner Course
+
                 ArrayAdapter(
                     it, android.R.layout.simple_spinner_dropdown_item, Course.values()
                 ).also { adapter ->
                     (courseAdd.editText as AutoCompleteTextView).setAdapter(adapter)
                 }
-                // Initialization spinner PreparationTime
+
                 ArrayAdapter(
                     it, android.R.layout.simple_spinner_dropdown_item, PreparationTime.values()
                 ).also { adapter ->
                     (preparationTimeAdd.editText as AutoCompleteTextView).setAdapter(adapter)
                 }
-                // Initialization spinner UnitOfMeasure
+
                 ArrayAdapter(
                     it, android.R.layout.simple_spinner_dropdown_item, UnitOfMeasure.values()
                 ).also { adapter ->
@@ -159,7 +159,7 @@ class AddRecipeFragment : Fragment() {
                 }
             }
 
-            // Listeners UI->ViewModel (apply the changes to ViewModel when change the data on UI)
+
             nameAdd.doOnTextChanged { text, _, _, _ ->
                 addRecipeViewModel.updateState { it.name = text.toString() }
             }
@@ -204,7 +204,7 @@ class AddRecipeFragment : Fragment() {
 
             (unitIngredientAdd.editText as AutoCompleteTextView).onItemClickListener =
                 OnItemClickListener { _, _, position, _ ->
-                    // Manage UnitOfMeasure.TO_TASTE
+
                     if (position == UnitOfMeasure.TO_TASTE.ordinal) {
                         quantityIngredientAdd.setText("")
                         quantityIngredientAdd.visibility = GONE
@@ -220,7 +220,7 @@ class AddRecipeFragment : Fragment() {
             nameIngredientAdd.setOnEditorActionListener { _, actionId, _ ->
                 return@setOnEditorActionListener when (actionId) {
                     EditorInfo.IME_ACTION_DONE -> {
-                        // If nameIngredientAdd is present and (quantityIngredientAdd is present or unitIngredientAdd==TO_TASTE)
+
                         if ((!quantityIngredientAdd.text.isNullOrBlank() || addRecipeViewModel.state.value?.unitIngredient == UnitOfMeasure.TO_TASTE) && !nameIngredientAdd.text.isNullOrBlank()) {
                             addIngredient(true)
                         }
@@ -238,14 +238,14 @@ class AddRecipeFragment : Fragment() {
             }
         }
 
-        // ViewModel->UI (Collect the ViewModel StateFlow and with it update the UI)
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 addRecipeViewModel.state.collect { state ->
                     state?.let {
                         binding.apply {
                             state.name?.let {
-                                if (nameAdd.text.toString() != state.name) { // it prevents an infinite-loop with the listener
+                                if (nameAdd.text.toString() != state.name) {
                                     nameAdd.setText(state.name)
                                 }
                             }
@@ -284,13 +284,13 @@ class AddRecipeFragment : Fragment() {
                                 )
                             }
                             state.ingredientsList?.let {
-                                // if the UI is different from state
+
                                 if (_bindingIngredientsList.size != state.ingredientsList!!.size) {
-                                    // clear layout of all ingredients
+
                                     for (i in _bindingIngredientsList.indices) {
                                         _bindingIngredientsList[i] = null
                                     }
-                                    // set new values and insert new ingredient
+
                                     for (ingredient in state.ingredientsList!!) {
                                         quantityIngredientAdd.setText(ingredient.quantity)
                                         nameIngredientAdd.setText(ingredient.name)
@@ -336,11 +336,11 @@ class AddRecipeFragment : Fragment() {
 
     private fun addIngredient(toInsert: Boolean) {
         binding.apply {
-            // Create the binding
+
             val bindingIngredients = ItemAddIngredientBinding.inflate(layoutInflater)
             _bindingIngredientsList.add(bindingIngredients)
             bindingIngredients.apply {
-                // Initialization spinner UnitOfMeasure
+
                 requireContext().let {
                     ArrayAdapter(
                         it, android.R.layout.simple_spinner_dropdown_item, UnitOfMeasure.values()
@@ -349,7 +349,7 @@ class AddRecipeFragment : Fragment() {
                     }
                 }
 
-                // Filling UI with new ingredient
+
                 quantityIngredientItemAdd.text = quantityIngredientAdd.text
                 (unitIngredientItemAdd.editText as AutoCompleteTextView).setText(
                     (unitIngredientAdd.editText as AutoCompleteTextView).text.toString(), false
@@ -359,7 +359,7 @@ class AddRecipeFragment : Fragment() {
                 }
                 nameIngredientItemAdd.text = nameIngredientAdd.text
 
-                // ERROR HANDLERS
+
                 quantityIngredientItemAdd.onFocusChangeListener =
                     OnFocusChangeListener { _, hasFocus ->
                         if (!hasFocus) AddRecipeCheckErrors.checkQuantityIngredientItem(
@@ -374,7 +374,7 @@ class AddRecipeFragment : Fragment() {
                     )
                 }
 
-                // Cleanup
+
                 quantityIngredientAdd.text?.clear()
                 (unitIngredientAdd.editText as AutoCompleteTextView).setText(
                     UnitOfMeasure.GRAM.toString(),
@@ -384,7 +384,7 @@ class AddRecipeFragment : Fragment() {
                 nameIngredientAdd.text?.clear()
                 nameIngredientLayoutAdd.error = null
 
-                // Add the view to linearLayout
+
                 ingredientsContainerAdd.addView(root)
 
                 if (toInsert) {
@@ -401,7 +401,7 @@ class AddRecipeFragment : Fragment() {
                     }
                 }
 
-                // Listeners UI->ViewModel
+
                 quantityIngredientItemAdd.doOnTextChanged { text, _, _, _ ->
                     addRecipeViewModel.updateState { state ->
                         state.ingredientsList = state.ingredientsList.also { list ->
@@ -460,11 +460,11 @@ class AddRecipeFragment : Fragment() {
         return resolvedActivity != null
     }
 
-    // APPBAR: MENU
+
     private fun setupMenu() {
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
             override fun onPrepareMenu(menu: Menu) {
-                // Handle for example visibility of menu items
+
             }
 
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {

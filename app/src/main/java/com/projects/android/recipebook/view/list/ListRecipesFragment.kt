@@ -29,14 +29,14 @@ import kotlinx.coroutines.launch
 
 class ListRecipesFragment : Fragment() {
 
-    // VIEW MODEL
+
     private val listRecipesViewModel: ListRecipesViewModel by viewModels()
 
-    // VIEW BINDING
+
     private var _binding: FragmentListRecipesBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
-            "Cannot access binding because it is null. Is the view visible?"
+            "Не возможно получить биндинг"
         }
 
     override fun onCreateView(
@@ -87,7 +87,7 @@ class ListRecipesFragment : Fragment() {
                                 )
                             )
                         }
-                    // Separator between items
+
                     binding.recipesRecyclerViewList.addItemDecoration(
                         DividerItemDecoration(
                             context,
@@ -112,16 +112,16 @@ class ListRecipesFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    // Обрабатываем клики по пунктам меню
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.delete_recipe -> {
                 AlertDialog.Builder(requireContext())
-                    .setTitle("Confirm to Delete?")
+                    .setTitle("Уверены, что хотите удалить?")
                     .setIcon(R.drawable.ic_baseline_dangerous_24)
                     .setPositiveButton(android.R.string.ok) { _, _ ->
                         viewLifecycleOwner.lifecycleScope.launch {
-                            // TODO: Логика удаления
+
                         }
                         findNavController().navigateUp()
                     }
@@ -139,7 +139,7 @@ class ListRecipesFragment : Fragment() {
         }
     }
 
-    // VIEW BINDING
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

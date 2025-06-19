@@ -24,15 +24,15 @@ import kotlinx.coroutines.launch
 
 class SingleRecipeFragment : Fragment() {
 
-    // SAFE ARGS
+
     private val args: SingleRecipeFragmentArgs by navArgs()
 
-    // VIEW MODEL
+
     private val singleRecipeViewModel: SingleRecipeViewModel by viewModels {
         SingleRecipeViewModelFactory(args.recipeID)
     }
 
-    // VIEW BINDING
+
     private var _binding: FragmentSingleRecipeBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -51,7 +51,7 @@ class SingleRecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // APPBAR: MENU
+
         setupMenu()
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -60,27 +60,27 @@ class SingleRecipeFragment : Fragment() {
                     state?.apply {
                         recipe?.let {
                             binding.apply {
-                                // name
+
                                 if (nameSingle.text.toString() != recipe!!.name) {
                                     nameSingle.text = recipe!!.name
                                 }
 
-                                // course
+
                                 if (courseSingle.text.toString() != recipe!!.course.toString()) {
                                     courseSingle.text = recipe!!.course.toString()
                                 }
 
-                                // preparation time
+
                                 if (prepTimeSingle.text.toString() != recipe!!.preparationTime.toString()) {
                                     prepTimeSingle.text = recipe!!.preparationTime.toString()
                                 }
 
-                                // portions
+
                                 if (portionsSingle.text.toString() != recipe!!.portions) {
                                     portionsSingle.text = recipe!!.portions
                                 }
 
-                                // isCooked
+
                                 if (recipe!!.isCooked) {
                                     if (isCookedSingle.text.toString() != resources.getString(R.string.single_recipe_fragment_isCooked)) {
                                         isCookedSingle.text =
@@ -104,7 +104,7 @@ class SingleRecipeFragment : Fragment() {
                                     }
                                 }
 
-                                // isVeg
+
                                 if (recipe!!.isVeg) {
                                     if (isVegSingle.text.toString() != resources.getString(R.string.single_recipe_fragment_isVeg)) {
                                         isVegSingle.text =
@@ -128,13 +128,12 @@ class SingleRecipeFragment : Fragment() {
                                     }
                                 }
 
-                                // ingredients
-                                // for each ingredient on the State
+
                                 for (i in recipe!!.ingredientsList.indices) {
                                     val ingredient = recipe!!.ingredientsList[i]
                                     var bindingIngredients =
                                         if (_bindingIngredientsList.lastIndex >= i) _bindingIngredientsList[i] else null
-                                    // if the ItemSingleIngredient doesn't exist yet, create it
+
                                     if (bindingIngredients == null) {
                                         bindingIngredients =
                                             ItemSingleIngredientBinding.inflate(layoutInflater)
@@ -145,7 +144,7 @@ class SingleRecipeFragment : Fragment() {
                                         if (nameIngredientItemSingle.text.toString() != ingredient.name) {
                                             nameIngredientItemSingle.text = ingredient.name
                                         }
-                                        // in the first box there's quantity or TO_TASTE
+
                                         if (ingredient.unitOfMeasure != UnitOfMeasure.TO_TASTE) {
                                             if (quantityIngredientItemSingle.text.toString() != ingredient.quantity) {
                                                 quantityIngredientItemSingle.text =
@@ -166,19 +165,19 @@ class SingleRecipeFragment : Fragment() {
                                         }
                                     }
                                 }
-                                // ingredients: remove excess elements
+
                                 for (i in recipe!!.ingredientsList.lastIndex + 1.._bindingIngredientsList.lastIndex) {
                                     ingredientsContainerSingle.removeView(_bindingIngredientsList[i]!!.root)
                                     _bindingIngredientsList.removeAt(i)
                                 }
 
-                                // preparation
+
                                 if (preparationSingle.text.toString() != recipe!!.preparation) {
                                     preparationSingle.text = recipe!!.preparation
                                 }
 
-                                // photo
-                                if (photoSingle.tag != recipe!!.pictureFileName) { // Update photo only when the name is different
+
+                                if (photoSingle.tag != recipe!!.pictureFileName) {
                                     val photoFile = recipe!!.pictureFileName?.let {
                                         PictureUtils.getPicture(requireContext(), it)
                                     }
@@ -214,11 +213,11 @@ class SingleRecipeFragment : Fragment() {
         _bindingIngredientsList.clear()
     }
 
-    // APPBAR: MENU
+
     private fun setupMenu() {
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
             override fun onPrepareMenu(menu: Menu) {
-                // Handle for example visibility of menu items
+
             }
 
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {

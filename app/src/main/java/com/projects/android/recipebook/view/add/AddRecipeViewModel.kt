@@ -1,6 +1,8 @@
 package com.projects.android.recipebook.view.add
 
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -27,7 +29,7 @@ class AddRecipeViewModel(recipeID: Int) : ViewModel() {
 
     init {
         viewModelScope.launch {
-            // If the navigation comes from SingleRecipe, enable the edit mode
+
             if (recipeID >= 0) {
                 recipeBookRepository.getSingleRecipe(recipeID).collect { recipe ->
                     _state.value = AddRecipeState().also {
@@ -45,7 +47,7 @@ class AddRecipeViewModel(recipeID: Int) : ViewModel() {
                     }
                 }
             } else {
-                // Default values
+
                 _state.value = AddRecipeState().also {
                     it.course = Course.SECOND
                     it.preparationTime = PreparationTime.THIRTY_MIN
@@ -74,17 +76,18 @@ class AddRecipeViewModel(recipeID: Int) : ViewModel() {
         return _state.value!!.checkRecipe(binding, bindingIngredientsList)
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     fun saveRecipe(context: Context) {
         if (!_state.value?.canceled!!) {
             _state.value?.formatRecipe()
             _state.value?.pictureFileName?.let {
-                // delete previous picture
+
                 _state.value?.pictureFileNamePrevious?.let { photoFileNamePrevious ->
                     PictureUtils.deletePicture(context, photoFileNamePrevious)
                 }
-                // save new picture
+
                 PictureUtils.savePicture(context, it)
-                // delete temp file
+
                 PictureUtils.deleteCachedPicture(context, it)
             }
             if (state.value!!.editMode) {
@@ -98,7 +101,7 @@ class AddRecipeViewModel(recipeID: Int) : ViewModel() {
     fun cancelInsertRecipe(context: Context) {
         if (_state.value?.canceled!!) {
             _state.value?.pictureFileName?.let {
-                // delete temp file
+
                 PictureUtils.deleteCachedPicture(context, it)
             }
         }

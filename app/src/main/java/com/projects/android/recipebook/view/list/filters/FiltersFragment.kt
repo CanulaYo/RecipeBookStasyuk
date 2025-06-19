@@ -18,10 +18,10 @@ import com.projects.android.recipebook.view.list.ListRecipesViewModel
 
 class FiltersFragment : Fragment() {
 
-    // VIEW MODEL: It uses the parent (ListRecipesFragment) scope for viewModel to get the same instance
+
     private val listRecipesViewModel: ListRecipesViewModel by viewModels({ requireParentFragment() })
 
-    // VIEW BINDING
+
     private var _binding: FragmentFiltersBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -132,7 +132,7 @@ class FiltersFragment : Fragment() {
         }
     }
 
-    // VIEW BINDING
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

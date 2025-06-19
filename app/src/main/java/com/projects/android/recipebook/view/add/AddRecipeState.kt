@@ -45,23 +45,23 @@ class AddRecipeState {
         binding: FragmentAddRecipeBinding,
         bindingIngredientsList: MutableList<ItemAddIngredientBinding?>
     ): Boolean {
-        // name
+
         return AddRecipeCheckErrors.checkName(binding.nameLayoutAdd, name) &&
-                // isVeg
+
                 AddRecipeCheckErrors.checkIsVeg(isVeg) &&
-                // isCooked
+
                 AddRecipeCheckErrors.checkIsCooked(isCooked) &&
-                // course
+
                 AddRecipeCheckErrors.checkCourse(course) &&
-                // portions
+
                 AddRecipeCheckErrors.checkPortions(binding.portionsLayoutAdd, portions) &&
-                // ingredients
+
                 AddRecipeCheckErrors.checkIngredients(
                     binding.nameIngredientLayoutAdd,
                     bindingIngredientsList,
                     ingredientsList
                 ) &&
-                // preparation
+
                 AddRecipeCheckErrors.checkPreparation(binding.preparationLayoutAdd, preparation)
     }
 
