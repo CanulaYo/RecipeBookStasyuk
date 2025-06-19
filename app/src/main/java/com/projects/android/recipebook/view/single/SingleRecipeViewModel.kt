@@ -45,7 +45,7 @@ class SingleRecipeViewModel(recipeID: Int) : ViewModel() {
         _state.value?.recipe?.pictureFileName?.let {
             if (!PictureUtils.getPicture(context, it).delete()) {
                 Toast.makeText(
-                    context, "Fail to delete picture", Toast.LENGTH_SHORT
+                    context, "Не удалось удалить фотографию", Toast.LENGTH_SHORT
                 ).show()
             }
         }

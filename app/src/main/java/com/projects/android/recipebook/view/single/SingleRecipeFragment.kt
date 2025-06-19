@@ -36,7 +36,7 @@ class SingleRecipeFragment : Fragment() {
     private var _binding: FragmentSingleRecipeBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
-            "Cannot access binding because it is null. Is the view visible?"
+            ""
         }
 
     private var _bindingIngredientsList = mutableListOf<ItemSingleIngredientBinding?>()
@@ -227,7 +227,7 @@ class SingleRecipeFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.delete_recipe -> {
-                        AlertDialog.Builder(requireContext()).setTitle("Confirm to Delete?")
+                        AlertDialog.Builder(requireContext()).setTitle("Удалить рецепт?")
                             .setIcon(R.drawable.ic_baseline_dangerous_24)
                             .setPositiveButton(android.R.string.ok) { _, _ ->
                                 viewLifecycleOwner.lifecycleScope.launch {
